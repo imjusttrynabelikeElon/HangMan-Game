@@ -6,47 +6,36 @@
 //
 
 import UIKit
+import Foundation
 
-class ViewController: UIViewController, UITextViewDelegate {
+
+class ViewController: UIViewController {
     var allWords = [String]()
-    // var LetterInWordsa = String(allWords)
-    var usedLetters = [String]()
-    let word = ""
-    //var words = [""]
-    var thePuzzleLetter = ""
-    var comeOn = ""
-    var wrongAnswers = 0
-    var startWords = [String]()
-    var promptWord = String()
-    var randomWord = String()
-    var strLetter = String()
-    var newTitle = ""
-    var ghgh = [String]()
-    var answer = [String]()
-    var strLetterr = String()
  
-    
-    // var wordssss = "".randomElement()
-    
+    var usedLetters = [String]()
   
+    var startWords = [String]()
+    
+    var promptWord = String()
+    
+    var randomWord = ""
+  
+    
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        EnterGuess()
-        submit(promptWord)
-        fileWork()
-        print(answer)
-         print(randomWord)
+    
         
-        title = "GoodLuck Pal:) \(comeOn)"
+        EnterGuess()
+        fileWork()
+        print(randomWord)
+        
+        title = "GUESS A Letter: ?????????)"
         
     }
     
     
-    
-    
-    // the amount
     
     
     
@@ -65,189 +54,151 @@ class ViewController: UIViewController, UITextViewDelegate {
                 
                 randomWord =  allWords.randomElement()!
                 
-              //  promptWord = String(repeating: "?", count: randomWord.count)
-                //  var replace = promptWord.replacingOccurrences(of: randomWord , with: answer, options: .regularExpression, range: nil)
-                for letter in randomWord {
-                    strLetterr = String(letter)
-                    if answer.contains(strLetter) {
-                        //  promptWord = answer.replacingOccurrences(of: answer, with: randomWord)
-                        //   print(replace)
-                        
-                    //    print(answer)
-                        // promptWord += strLetter
-                        // print("U^e")
-                        //   print("Thi")
-                        
-                    } else {
-                        // promptWord = promptWord.replacingOccurrences(of: answer, with: randomWord)
-                      //  print(strLetterr)
-                        //et   print("hh")
-                        //   promptWord += "?"
-                        
-                        // print(thi)
-                        
-                    }
-                   // print(promptWord)
-               //     promptWord = promptWord.replacingOccurrences(of: answer, with: randomWord)
-                    
-                    
-                    //     let thePuzzleLetter = startWords.replacingOccurrences(of: startWords, with: "????????")
-                    
-                    //   let strLetter = String(thePuzzleLetter)
-                    
-                    //   print(wordssss!)
-                    
-                    
-                    
-                    
-                    
-                    // the amount the of time
-                    //  print(strLetter.count)
-                    
-                    
-                    
-                    //  title = thePuzzleLetter
-                    // print(thePuzzleLetter.count)
-                    
-                    //   print(startWords)
-                    
-                    //   func isLetterInWord(word: Character) {
-                    
-                    //   }
-                    
-                    
-                    
-                    // the amount of time it takes to be in the amount of time
-                    
-                    // the amount of time this takes to let you know
-                    
-                    
-                    
-                    // this is the amount of time to
-                    
-                    
-                    
-                    
-                    
-                    
-                }
-                
-                
-                
-                
-                // title = randomWord
-                
-                //     let thePuzzleLetter = startWords.replacingOccurrences(of: startWords, with: "????????")
-                
-                //   let strLetter = String(thePuzzleLetter)
-                
-                //   print(wordssss!)
-                
-                
-                
-                
-                
-                // the amount the of time
-                //  print(strLetter.count)
-                
-                
-                
-                //  title = thePuzzleLetter
-                // print(thePuzzleLetter.count)
-                
-                //   print(startWords)
-                
-                //   func isLetterInWord(word: Character) {
-                
-                //   }
-                
-                
-                
-                // the amount of time it takes to be in the amount of time
-                
-                // the amount of time this takes to let you know
-                
-                
-                
-                // this is the amount of time to
-                
-                
-                
-                
                 
                 
             }
             
             
-            
-            
-            
-            
-            
         }
         
         
-        
-        if allWords.isEmpty {
-            allWords = ["HGHCG"]
-            
-        }
     }
     
     
+  
     func EnterGuess() {
-     
+        
         let ac = UIAlertController(title: "Guess a letter", message: nil, preferredStyle: .alert)
         ac.addTextField()
+      
+      
+
+      var submitGuess = UIAlertAction(title: "Submit", style: .default) {_ in
         
-        let submitGuess = UIAlertAction(title: "Submit", style: .default) {
-            [weak self, weak ac] _ in
-            guard let answer = ac?.textFields?[0].text else {return }
-            self?.submit(answer)
+        
+            guard var answer = ac.textFields?[0].text else {return }
+      answer
+            
+         
+            
+            self.submit(answer)
+            self.EnterGuess()
+    
+            
         }
         ac.addAction(submitGuess)
         present(ac, animated: true)
         
-       // title = comeOn
+       
     }
     
     
-    
+
     func submit(_ answer: String) {
         
-        var lowerWord = randomWord
-    
+    let guessedLetter = answer
+        
+        let wordArray = randomWord.map(String.init)
+        var hidden = Array(repeating: "x", count: randomWord.count)
+        
+    var leterrr = ["?","?","?","?","?","?","?","?",]
+     
+       var uh = 0
+        
+        title = promptWord
       
-        for letter in lowerWord {
-          
-           EnterGuess()
-            
-            if answer.contains(letter) == true {
-             
-                comeOn += String(letter)
-            
-              
-                
-            } else  {
-              
-                comeOn += "?"
-                
-                
-                
-               
-            }
+        print(promptWord)
+       
+        
+  
+       
+    
+        for  index in leterrr.indices {
             
           
+            
          
             
-        }
+            // i just realized its most likey not the arrays or code thats the problem. I pretty much  tried all solutions and they did not work. Its the loop itself/ index or button.
         
+     
       
-        print(comeOn)
+     
+        if wordArray[0] == answer {
+         
+        hidden[0] = answer
+     
+     
+        
+       hidden = [wordArray[0],"?","?","?","?","?","?","?",]
+        
+       } else  if wordArray[1] == answer {
+       hidden[1] = answer
+       hidden = [wordArray[0],wordArray[1],"?","?","?","?","?","?",]
+     
+       } else  if wordArray[2] == answer {
+       hidden[2] = answer
+       hidden = [wordArray[0],wordArray[1],wordArray[2],"?","?","?","?","?",]
+     
+       } else  if wordArray[3] == answer {
+       hidden[3] = answer
+       hidden = [wordArray[0],wordArray[1],wordArray[2],wordArray[3],"?","?","?","?",]
+     
+       } else  if wordArray[4] == answer {
+       hidden[4] = answer
+       hidden = [wordArray[0],wordArray[1],wordArray[3],wordArray[4],"?","?","?","?",]
+     
+       } else  if wordArray[5] == answer {
+       hidden[5] = answer
+       hidden = [wordArray[0],wordArray[1],wordArray[2],wordArray[3],wordArray[4],wordArray[5],"?","?"]
+     
+       } else  if wordArray[6] == answer {
+       hidden[6] = answer
+       hidden = [wordArray[0],wordArray[1],wordArray[2],wordArray[3],wordArray[4],wordArray[5],wordArray[6], "?"]
+     
+       } else  if wordArray[7] == answer {
+       hidden[7] = answer
+       hidden = [wordArray[0],wordArray[1],wordArray[2],wordArray[3],wordArray[4],wordArray[5],wordArray[6],wordArray[7]]
+     
+       }
+       
+             
       
+           
+         
+        
+       
+        
+     
+          
+            
+            
+        }
+        print(hidden.joined())
+     
+     //   print(wordArray)
+      
+        
+        title = randomWord
+        
+        
+        
         
         
     }
+     
+
+            
+
+        }
+        
+        
+        
+        
+        
+        
     
- 
-}
+    
+    
+    
+
