@@ -132,7 +132,7 @@ class ViewController: UIViewController {
         
        hidden = [wordArray[0],"?","?","?","?","?","?","?",]
         
-       } else  if wordArray[1] == answer {
+        } else  if wordArray[1] == answer {
        hidden[1] = answer
        hidden = [wordArray[0],wordArray[1],"?","?","?","?","?","?",]
      
@@ -146,7 +146,8 @@ class ViewController: UIViewController {
      
        } else  if wordArray[4] == answer {
        hidden[4] = answer
-       hidden = [wordArray[0],wordArray[1],wordArray[3],wordArray[4],"?","?","?","?",]
+       hidden = [wordArray[0],wordArray[1],wordArray[2],
+                 wordArray[3],wordArray[4],"?","?","?","?"]
      
        } else  if wordArray[5] == answer {
        hidden[5] = answer
