@@ -32,6 +32,9 @@ let usedLabel = UILabel()
 
 let newGameButton = UIButton()
 
+let go = UILabel()
+
+let go2 = UILabel()
 
 override func viewDidLoad() {
 
@@ -65,27 +68,40 @@ tf.textAlignment = .center
 tf.borderStyle = .roundedRect
 
 tf.textAlignment = .center
-tf.font = .monospacedSystemFont(ofSize: 24.0, weight: .light)
+tf.font = .systemFont(ofSize: 28, weight: .semibold)
 
 tf.delegate = self
 
 progressLabel.textAlignment = .center
-progressLabel.font = .monospacedSystemFont(ofSize: 24.0, weight: .light)
+progressLabel.font = .monospacedSystemFont(ofSize: 29.0, weight: .light)
 progressLabel.backgroundColor = .yellow
 
+
+go.font = .monospacedSystemFont(ofSize: 24, weight: .medium)
+go.textColor = .black
+go.text = "Guess a letter"
+
+
 usedLabel.textAlignment = .center
-usedLabel.font = .monospacedSystemFont(ofSize: 16.0, weight: .light)
+usedLabel.font = .monospacedSystemFont(ofSize: 29.0, weight: .light)
 usedLabel.backgroundColor = .cyan
+
+
+go2.font = .monospacedSystemFont(ofSize: 24, weight: .medium)
+go2.textColor = .black
+go2.text = "All Letters"
+go2.textAlignment = .center
+
 
 newGameButton.setTitle("New Game", for: [])
 newGameButton.setTitleColor(.white, for: .normal)
 newGameButton.setTitleColor(.lightGray, for: .highlighted)
 newGameButton.backgroundColor = .systemBlue
-newGameButton.layer.cornerRadius = 8
+newGameButton.layer.cornerRadius = 9
 newGameButton.layer.borderColor = UIColor.blue.cgColor
-newGameButton.layer.borderWidth = 1
+newGameButton.layer.borderWidth = 3
 
-[tf, progressLabel, usedLabel, newGameButton].forEach { v in
+[tf, progressLabel, go, usedLabel, go2, newGameButton].forEach { v in
 v.translatesAutoresizingMaskIntoConstraints = false
 view.addSubview(v)
 
@@ -101,12 +117,24 @@ progressLabel.widthAnchor.constraint(equalToConstant: 300.0),
 progressLabel.topAnchor.constraint(equalTo: tf.bottomAnchor, constant: 40.0),
 progressLabel.centerXAnchor.constraint(equalTo: g.centerXAnchor),
 
-usedLabel.widthAnchor.constraint(equalToConstant: 300.0),
-usedLabel.topAnchor.constraint(equalTo: progressLabel.bottomAnchor, constant: 40.0),
+
+
+go.widthAnchor.constraint(equalToConstant: 210.0),
+go.topAnchor.constraint(equalTo: progressLabel.bottomAnchor, constant: 85.0),
+go.centerXAnchor.constraint(equalTo: g.centerXAnchor),
+
+
+
+usedLabel.widthAnchor.constraint(equalToConstant: 305.0),
+usedLabel.topAnchor.constraint(equalTo: go.bottomAnchor, constant: 39.0),
 usedLabel.centerXAnchor.constraint(equalTo: g.centerXAnchor),
 
+go2.widthAnchor.constraint(equalToConstant: 203.0),
+go2.topAnchor.constraint(equalTo: usedLabel.bottomAnchor, constant: 93.0),
+go2.centerXAnchor.constraint(equalTo: g.centerXAnchor),
+
 newGameButton.widthAnchor.constraint(equalToConstant: 200.0),
-newGameButton.topAnchor.constraint(equalTo: usedLabel.bottomAnchor, constant: 40.0),
+newGameButton.topAnchor.constraint(equalTo: go2.bottomAnchor, constant: 40.0),
 newGameButton.centerXAnchor.constraint(equalTo: g.centerXAnchor),
 
 ])
