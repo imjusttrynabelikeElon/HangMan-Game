@@ -15,14 +15,21 @@ var allWords = [String]()
 
 var usedLetters = [String]()
 
+var wrongAnswer = [String]()
+
 var startWords = [String]()
 
 var promptWord = String()
 
 var randomWord = ""
 
+var wordArray3 = [String]()
+
 var hidden = [String]()
 
+var rightAnswers = [String]()
+
+var wordArray2 =  [String]()
 
 let tf = UITextField()
 
@@ -30,23 +37,35 @@ let progressLabel = UILabel()
 
 let usedLabel = UILabel()
 
+@IBOutlet var hangManImage: UIImageView!
+
 let newGameButton = UIButton()
 
 let go = UILabel()
 
 let go2 = UILabel()
 
+let enterLeter = UILabel()
 override func viewDidLoad() {
+
 
 super.viewDidLoad()
 
-title = "GUESS KARON"
+title = "HangMan Game Created by Karon."
+
+navigationController?.isNavigationBarHidden = false
+
+
+overrideUserInterfaceStyle = .light
+
+
+
 
 
 
 if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
 if let startWords = try? String(contentsOf: startWordsURL) {
- allWords = startWords.components(separatedBy: "\n")
+allWords = startWords.components(separatedBy: "\n")
 let wordssss = startWords.randomElement()
 
 randomWord =  allWords.randomElement()!
@@ -60,12 +79,15 @@ randomWord =  allWords.randomElement()!
 allWords = ["HIIII", "GGGGYU"]
 }
 
-
+enterLeter.font = .monospacedSystemFont(ofSize: 24, weight: .medium)
+enterLeter.textColor = .black
+enterLeter.text = "Enter a letter"
 
 
 
 tf.textAlignment = .center
 tf.borderStyle = .roundedRect
+tf.layer.borderWidth = 3
 
 tf.textAlignment = .center
 tf.font = .systemFont(ofSize: 28, weight: .semibold)
@@ -79,7 +101,7 @@ progressLabel.backgroundColor = .yellow
 
 go.font = .monospacedSystemFont(ofSize: 24, weight: .medium)
 go.textColor = .black
-go.text = "Guess a letter"
+go.text = "Hidden letter"
 
 
 usedLabel.textAlignment = .center
@@ -101,13 +123,18 @@ newGameButton.layer.cornerRadius = 9
 newGameButton.layer.borderColor = UIColor.blue.cgColor
 newGameButton.layer.borderWidth = 3
 
-[tf, progressLabel, go, usedLabel, go2, newGameButton].forEach { v in
+[ enterLeter, tf, progressLabel, go, usedLabel, go2, newGameButton].forEach { v in
 v.translatesAutoresizingMaskIntoConstraints = false
 view.addSubview(v)
 
 }
 let g = view.safeAreaLayoutGuide
 NSLayoutConstraint.activate([
+
+
+enterLeter.widthAnchor.constraint(equalToConstant: 230.0),
+enterLeter.topAnchor.constraint(equalTo: g.topAnchor, constant: 20.0),
+enterLeter.centerXAnchor.constraint(equalTo: g.centerXAnchor),
 
 tf.widthAnchor.constraint(equalToConstant: 80.0),
 tf.topAnchor.constraint(equalTo: g.topAnchor, constant: 80.0),
@@ -171,11 +198,226 @@ submit(s)
 return false
 }
 
+
+
+
+
+
+
+
+
+
+
+func submit(_ answer: String) {
+
+let ac = UIAlertController(title: "Sorry too many attempts", message: "New Game", preferredStyle: .alert)
+
+let restart = UIAlertAction(title: "Restart", style: .cancel)
+
+
+
+if usedLetters.contains(answer) {
+return
+}
+
+usedLetters.append(answer)
+usedLabel.text = usedLetters.joined()
+
+wordArray3 = randomWord.map(String.init)
+
+for index in hidden.indices {
+
+title = "Hint.. \(String(describing: wordArray3.first!)) is the first letter... \(String(describing: wordArray3.last!)) is the last!"
+
+hangManImage.image = UIImage(named: "")
+if wordArray3[index] == answer {
+hidden[index] = wordArray3[index]
+rightAnswers.append(answer)
+
+}
+
+print("Here is the wordArray3 \(wordArray3)")
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+if usedLetters != rightAnswers && !rightAnswers.contains(answer) {
+wrongAnswer.append(answer)
+print("wrong answers = \(wrongAnswer)")
+// remove the first letter from usedLetters
+}
+
+
+
+if wrongAnswer.count == 1 {
+hangManImage.image = UIImage(named: "hangman-1")
+}
+
+if wrongAnswer.count == 2 {
+hangManImage.image =  UIImage(named: "hangman-2")
+}
+
+if wrongAnswer.count == 3 {
+hangManImage.image =  UIImage(named: "hangman-3")
+}
+
+
+if wrongAnswer.count == 4 {
+hangManImage.image =  UIImage(named: "hangman-3")
+}
+
+if wrongAnswer.count == 5 {
+hangManImage.image =  UIImage(named: "hangman-3")
+}
+
+if wrongAnswer.count == 6 {
+hangManImage.image =  UIImage(named: "hangman-3")
+}
+
+if wrongAnswer.count == 7 {
+hangManImage.image =  UIImage(named: "hangman-3")
+}
+
+if wrongAnswer.count == 8 {
+hangManImage.image =  UIImage(named: "hangman-3")
+}
+
+if wrongAnswer.count == 9 {
+hangManImage.image =  UIImage(named: "hangman-3")
+}
+if wrongAnswer.count == 10 {
+hangManImage.image =  UIImage(named: "hangman-3")
+}
+if wrongAnswer.count == 11 {
+hangManImage.image =  UIImage(named: "hangman-3")
+}
+if wrongAnswer.count == 12 {
+hangManImage.image =  UIImage(named: "hangman-3")
+}
+if wrongAnswer.count == 13 {
+hangManImage.image =  UIImage(named: "hangman-3")
+}
+if wrongAnswer.count == 14 {
+hangManImage.image =  UIImage(named: "hangman-3")
+}
+if wrongAnswer.count == 15 {
+hangManImage.image =  UIImage(named: "hangman-3")
+}
+if wrongAnswer.count == 16 {
+hangManImage.image =  UIImage(named: "hangman-3")
+}
+if wrongAnswer.count == 17 {
+hangManImage.image =  UIImage(named: "hangman-3")
+}
+if wrongAnswer.count == 18 {
+hangManImage.image =  UIImage(named: "hangman-3")
+}
+
+if usedLetters.count == 19 {
+//hangManImage.image =  UIImage(named: "lose")
+}
+
+if usedLetters.count == 19 {
+
+
+
+print(usedLetters.count)
+hangManImage.image = UIImage(named: "lose")
+ac.addAction(restart)
+present(ac, animated: true)
+rightAnswers.removeAll()
+wrongAnswer.removeAll()
+usedLetters.removeAll()
+tf.text = ""
+
+
+newGame()
+
+title = "Guess a letter to get a hint..."
+hangManImage.image = UIImage(named: "lose")
+
+}
+
+
+
+
+
+
+
+if usedLetters.count == 19 {
+// hangManImage.image = UIImage(named: "lose")
+//newGame()
+
+}
+
+
+
+if rightAnswers.count == 8 {
+title = "NEW GAME YESS!!!"
+
+print("SCORE = 1")
+newGame()
+
+}
+
+
+// this is what made the wrong answers array work correctly/
+
+progressLabel.text = hidden.joined()
+
+if hidden == wordArray2 {
+progressLabel.textColor = .red
+
+// clear and disable text field
+tf.text = ""
+tf.isUserInteractionEnabled = false
+
+// dismiss keyboard
+view.endEditing(true)
+
+// show the new game button
+//newGameButton.isHidden = false
+
+
+
+
+
+}
+
+
+}
+
+
+
 func newGame() {
 
 
+
+
+
+
+
+allWords.shuffle()
+
+wrongAnswer.removeAll()
+usedLetters.removeAll()
+
+hangManImage.image = UIImage(named: "")
+
+
+
 // cycle the array of game words
- allWords.append(allWords.removeFirst())
+allWords.append(allWords.removeFirst())
 
 // safely unwrap
 guard let w = allWords.first else {
@@ -218,57 +460,8 @@ print("New Game Word is:", randomWord)
 
 
 
-
-func submit(_ answer: String) {
-
-if usedLetters.contains(answer) {
-return
-}
-usedLetters.append(answer)
-usedLabel.text = usedLetters.joined()
-
-let wordArray = randomWord.map(String.init)
-
-for index in hidden.indices {
-if wordArray[index] == answer {
-hidden[index] = wordArray[index]
-}
-}
-
-progressLabel.text = hidden.joined()
-
-if hidden == wordArray {
-progressLabel.textColor = .red
-
-// clear and disable text field
-tf.text = ""
-tf.isUserInteractionEnabled = false
-
-// dismiss keyboard
-view.endEditing(true)
-
-// show the new game button
-newGameButton.isHidden = false
-
-
-
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-
-
-
 @objc func newGameTapped(_ sender: UIButton) {
+
 newGame()
 }
 
@@ -279,6 +472,7 @@ newGame()
 
 
 }
+
 
 
 
